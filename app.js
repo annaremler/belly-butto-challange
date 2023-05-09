@@ -1,7 +1,3 @@
-// Module 14
-// Belly-Button-Challenge
-
-// Function for the new option selected
 function optionChanged(selectedID) {
     const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
     //Read the data from url
@@ -24,7 +20,6 @@ function optionChanged(selectedID) {
       orientation: "h"
     }];
     
-    //Layout
     let Layout1 = {
       title: "Top 10 Bacteria Cultures Found",
       margin: { t:100, l: 160 }
@@ -44,7 +39,7 @@ function optionChanged(selectedID) {
             colorscale: "Earth"
         }
     }];
-    //Layout
+
     let Layout2 = {
         title: "Bacteria Cultures Per Sample",
         hovermode: "closest",
@@ -61,7 +56,6 @@ function optionChanged(selectedID) {
     let metaResult = metaArray[0];
     let wfreq = metaResult.wfreq;
 
-    //Create trace in a list
     let Trace3 = [{
         value: wfreq,
         title: { text: "Belly Button Washing Frequency <br> Scrubs per Week" },
@@ -87,14 +81,13 @@ function optionChanged(selectedID) {
         }
     }];
 
-    //Layout
     let Layout3 = { 
         width: 600, 
         height: 500, 
         margin: { t: 0, b: 0 },
         showlegend: false
     };
-    //Plot the gauge chart
+
     Plotly.newPlot("gauge", Trace3, Layout3);
 
 //Demographic Info
@@ -109,18 +102,14 @@ function optionChanged(selectedID) {
     });
 };
 
-//Function for the initial data rendering
 function init() {
-    //Select the dropdown menu
     let dropdown = d3.select("#selDataset");
-    //Read the data from url
     const url = "https://2u-data-curriculum-team.s3.amazonaws.com/dataviz-classroom/v1.1/14-Interactive-Web-Visualizations/02-Homework/samples.json";
     d3.json(url).then(function(data) {
         //Get the ID data to the dropdown menu
         data.names.forEach(function(id) {
             dropdown.append("option").text(id).property("value");
         });
-        //Call the functions to display the data and the plots to the page
         optionChanged(data.names[0]);
     });
 };
